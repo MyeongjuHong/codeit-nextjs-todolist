@@ -1,5 +1,5 @@
 // Todo API 관련 비즈니스 로직을 모아놓은 파일
-const API_URL = "http://localhost:4001/todos";
+const API_URL = "http://localhost:4000/todos";
 
 // 할 일 목록 조회
 export const fetchTodos = async () => {
