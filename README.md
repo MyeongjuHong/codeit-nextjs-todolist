@@ -1,3 +1,39 @@
+# Todo 리스트 애플리케이션
+
+Next.js와 json-server를 이용한 간단한 Todo 리스트 애플리케이션입니다.
+
+## 기능
+
+- Todo 항목 조회
+- Todo 항목 추가
+- Todo 항목 삭제
+- Todo 완료 상태 토글
+
+## 설치 및 실행
+
+1. 프로젝트 의존성 설치:
+
+```bash
+npm install
+```
+
+2. json-server 실행:
+
+```bash
+npm run json-server
+```
+
+3. 개발 서버 실행:
+
+```bash
+npm run dev
+```
+
+4. 브라우저에서 다음 주소로 접속:
+
+- 애플리케이션: http://localhost:3000
+- json-server API: http://localhost:4000/todos
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
