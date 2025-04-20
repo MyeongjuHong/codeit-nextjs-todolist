@@ -1,0 +1,18 @@
+.Container {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.HorizontalRule {
+  flex: 1;
+  border: none;
+  height: 1px;
+  background-color: #e7e7e7;
+}
+
+.Text {
+  color: #888888;
+  font-size: 14px;
+  white-space: nowrap;
+}

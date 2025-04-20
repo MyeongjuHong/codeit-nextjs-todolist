@@ -1,0 +1,68 @@
+.Heading {
+  font-size: 24px;
+  font-weight: 700;
+  margin: 32px 0;
+}
+
+.Label,
+.Input,
+.Button,
+.GoogleButton {
+  display: block;
+  width: 100%;
+}
+
+.Label {
+  margin: 0;
+}
+
+.Input {
+  margin: 8px 0 24px;
+}
+
+.Button {
+  font-size: 20px;
+  font-weight: 700;
+  margin: 40px 0 32px;
+}
+
+.HorizontalRule {
+  margin: 32px 0;
+}
+
+.GoogleButton {
+  display: flex;
+  font-size: 18px;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  margin: 24px 0;
+  color: #000000;
+}
+
+.Error {
+  color: red;
+  margin-bottom: 10px;
+}
+
+/* 디버깅 정보 스타일 */
+.Debug {
+  margin-top: 20px;
+  padding: 15px;
+  background-color: #f5f5f5;
+  border-radius: 5px;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.Debug h3 {
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+.Debug pre {
+  white-space: pre-wrap;
+  word-break: break-all;
+  font-family: monospace;
+  font-size: 12px;
+}
