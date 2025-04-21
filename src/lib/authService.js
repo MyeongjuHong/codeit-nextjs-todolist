@@ -14,4 +14,10 @@ export const authService = {
       method: "POST",
       body: JSON.stringify({ name, email, password }),
     }),
+
+  // 로그아웃
+  logout: () =>
+    cookieFetch("/auth/logout", {
+      method: "POST",
+    }),
 };

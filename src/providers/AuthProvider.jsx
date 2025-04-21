@@ -9,6 +9,7 @@ const AuthContext = createContext({
   logout: () => {},
   user: null,
   updateUser: () => {},
+  register: () => {},
 });
 
 export const useAuth = () => {
@@ -23,8 +24,17 @@ export default function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
 
   const getUser = async () => {
-    const user = await userService.getMe();
-    setUser(user);
+    try {
+      const user = await userService.getMe();
+      setUser(user);
+    } catch (error) {
+      console.error("사용자 정보를 가져오는데 실패했습니다:", error);
+      setUser(null);
+    }
+  };
+
+  const register = async (name, email, password) => {
+    await authService.register(name, email, password);
   };
 
   const login = async (email, password) => {
@@ -34,6 +44,7 @@ export default function AuthProvider({ children }) {
 
   const logout = async () => {
     /** @TODO 로그아웃 로직 구현 */
+    console.log("로그아웃");
   };
 
   const updateUser = async (user) => {
@@ -46,7 +57,7 @@ export default function AuthProvider({ children }) {
   }, []);
 
   return (
-    <AuthContext.Provider value={{ user, login, logout, updateUser }}>
+    <AuthContext.Provider value={{ user, login, logout, updateUser, register }}>
       {children}
     </AuthContext.Provider>
   );

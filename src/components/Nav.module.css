@@ -24,6 +24,13 @@
 .Menu {
   display: flex;
   gap: 16px;
+  align-items: center;
+}
+
+.Divider {
+  width: 1px;
+  height: 24px;
+  background-color: #eeeeee;
 }
 
 @media (max-width: 640px) {

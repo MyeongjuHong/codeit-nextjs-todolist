@@ -9,6 +9,7 @@ import Link from "next/link";
 import HorizontalRule from "../HorizontalRule";
 import styles from "./RegisterPage.module.css";
 import { authService } from "@/lib/authService";
+import { useAuth } from "@/providers/AuthProvider";
 
 function RegisterPage() {
   const [values, setValues] = useState({
