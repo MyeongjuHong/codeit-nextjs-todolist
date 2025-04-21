@@ -32,7 +32,23 @@ function LoginPage() {
     try {
       setError(null);
       setLoading(true);
-      await authService.login(values.email, values.password);
+      const response = await fetch(
+        "https://learn.codeit.kr/api/link-service/auth/login",
+        {
+          method: "POST",
+          credentials: "include",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            email: values.email,
+            password: values.password,
+          }),
+        },
+      );
+      if (!response.ok) {
+        throw new Error("로그인에 실패했습니다.");
+      }
       alert("로그인에 성공했습니다.");
       router.push("/me");
     } catch (error) {
