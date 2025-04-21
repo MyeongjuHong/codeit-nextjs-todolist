@@ -11,6 +11,7 @@ function Button({
   as: AsComponent,
   href,
   fullWidth,
+  disabled,
   ...rest
 }) {
   // 스타일 클래스 생성
@@ -80,6 +81,7 @@ function Button({
         color: appearance === "primary" ? "white" : "black",
         ...fullWidthStyle,
       }}
+      disabled={disabled}
       {...rest}
     >
       {children}

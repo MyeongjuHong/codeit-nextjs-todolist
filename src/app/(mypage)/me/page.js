@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import styles from "./page.module.css";
 import { userService } from "@/lib/userService";
-import { useAuth } from "@/providers/AuthProvider";
 import Avatar from "@/components/Avatar";
 import Button from "@/components/Button";
 import Card from "@/components/Card";
@@ -14,10 +13,19 @@ import LinkCard from "@/components/LinkCard";
 import Link from "next/link";
 
 export default function MyPage() {
-  const { user } = useAuth();
+  const [user, setUser] = useState(null);
   const [links, setLinks] = useState([]);
   const [loading, setLoading] = useState(true);
   const router = useRouter();
+
+  async function getMe() {
+    try {
+      const userData = await userService.getMe();
+      setUser(userData);
+    } catch (error) {
+      console.error("사용자 정보 가져오기 실패:", error);
+    }
+  }
 
   async function getMyLinks() {
     try {
@@ -44,6 +52,7 @@ export default function MyPage() {
   }
 
   useEffect(() => {
+    getMe();
     getMyLinks();
   }, []);
 
@@ -64,7 +73,7 @@ export default function MyPage() {
             <div className={styles.Name}>{user.name}</div>
             <div className={styles.Email}>{user.email}</div>
           </div>
-          <Button className={styles.EditButton} as={Link} href="/me/edit">
+          <Button disabled={true} className={styles.EditButton}>
             편집
           </Button>
         </Card>
