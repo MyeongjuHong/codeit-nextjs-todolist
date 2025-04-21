@@ -8,6 +8,7 @@ import Button from "../Button";
 import Link from "next/link";
 import HorizontalRule from "../HorizontalRule";
 import styles from "./RegisterPage.module.css";
+import { authService } from "@/lib/authService";
 
 function RegisterPage() {
   const [values, setValues] = useState({
@@ -40,25 +41,7 @@ function RegisterPage() {
       setLoading(true);
       setError(null);
 
-      const response = await fetch(
-        "https://learn.codeit.kr/api/link-service/users",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            name: values.name,
-            email: values.email,
-            password: values.password,
-          }),
-        },
-      );
-
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.message || "회원가입에 실패했습니다.");
-      }
+      await authService.register(values.name, values.email, values.password);
 
       // 회원가입 성공 후 처리
       alert("회원가입에 성공했습니다.");
