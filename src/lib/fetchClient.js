@@ -33,6 +33,7 @@ export const defaultFetch = async (url, options = {}) => {
  * 쿠키 인증 fetch 클라이언트
  */
 export const cookieFetch = async (url, options = {}) => {
+  console.log("options", options);
   const baseURL = process.env.NEXT_PUBLIC_API_URL;
   const defaultOptions = {
     headers: {

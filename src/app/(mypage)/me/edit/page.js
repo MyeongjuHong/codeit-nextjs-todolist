@@ -8,28 +8,29 @@ import Button from "@/components/Button";
 import TextArea from "@/components/TextArea";
 import AvatarInput from "@/components/AvatarInput";
 import styles from "./page.module.css";
-import { userService } from "@/lib/userService";
+import { useAuth } from "@/providers/AuthProvider";
 
 export default function EditPage() {
-  const [initialAvatar, setInitialAvatar] = useState("");
   const [values, setValues] = useState({
     avatar: "",
     name: "",
     email: "",
     bio: "",
   });
+  const { updateUser, user } = useAuth();
   const router = useRouter();
 
-  async function getMe() {
-    try {
-      const nextUser = await userService.getMe();
-      const { avatar, name, email, bio } = nextUser;
-      setValues({ name, email, bio });
-      setInitialAvatar(avatar);
-    } catch (error) {
-      console.error("Error fetching user data:", error);
+  useEffect(() => {
+    if (user) {
+      const { avatar, name, email, bio } = user;
+      setValues({
+        avatar: avatar || "",
+        name: name || "",
+        email: email || "",
+        bio: bio || "",
+      });
     }
-  }
+  }, [user]);
 
   function handleChange(name, value) {
     setValues((prevValues) => ({
@@ -52,14 +53,7 @@ export default function EditPage() {
       formData.append("email", values.email);
       formData.append("bio", values.bio);
 
-      const res = await fetch("/api/users/me", {
-        method: "PATCH",
-        body: formData,
-      });
-
-      if (!res.ok) {
-        throw new Error("Failed to update profile");
-      }
+      await updateUser(formData);
 
       router.push("/me");
     } catch (error) {
@@ -67,17 +61,13 @@ export default function EditPage() {
     }
   }
 
-  useEffect(() => {
-    getMe();
-  }, []);
-
   return (
     <>
       <h1 className={styles.Heading}>프로필 편집</h1>
       <form className={styles.Form} onSubmit={handleSubmit}>
         <AvatarInput
           name="avatar"
-          initialAvatar={initialAvatar}
+          initialAvatar={values.avatar}
           className={styles.Input}
           onChange={handleChange}
         />
@@ -115,7 +105,7 @@ export default function EditPage() {
           type="text"
           maxLength={64}
           placeholder="아래에 등록한 사이트들과 자신에 대해 간단하게 소개하는 설명을 작성해 주세요!"
-          value={values.bio || ""}
+          value={values.bio}
           onChange={handleInputChange}
         />
         <Button className={styles.Button}>적용하기</Button>

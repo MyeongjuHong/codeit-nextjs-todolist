@@ -1,14 +1,14 @@
 "use client";
 
+import Link from "next/link";
 import React from "react";
-import NextLink from "next/link";
 
-function Link({ children, href, ...rest }) {
+function NextLink({ children, href = "/", ...rest }) {
   return (
-    <NextLink href={href} {...rest}>
+    <Link href={href} {...rest}>
       {children}
-    </NextLink>
+    </Link>
   );
 }
 
-export default Link;
+export default NextLink;
