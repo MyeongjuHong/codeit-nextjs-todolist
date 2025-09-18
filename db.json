@@ -1,22 +1,144 @@
 {
   "todos": [
     {
-      "id": "f2b8",
-      "title": "Doing dishes",
+      "id": "a1f4",
+      "title": "Buy groceries",
       "isCompleted": true,
-      "createdAt": "2025-09-15T23:39:17.178Z"
+      "createdAt": "2025-09-14T10:15:00.000Z",
+      "desc": "장보기 목록 작성하고 필요한 재료 구매"
     },
     {
-      "id": "f3e6",
-      "title": "Cleaning my room",
+      "id": "b2c5",
+      "title": "Workout",
+      "isCompleted": true,
+      "createdAt": "2025-09-13T08:30:00.000Z",
+      "desc": "아침 러닝 30분, 스트레칭 포함"
+    },
+    {
+      "id": "c3d6",
+      "title": "Read a book",
       "isCompleted": false,
-      "createdAt": "2025-09-15T23:39:21.556Z"
+      "createdAt": "2025-09-12T20:00:00.000Z",
+      "desc": "IT 관련 책 한 챕터 읽기"
     },
     {
-      "id": "ede1",
-      "title": "hihi",
+      "id": "d4e7",
+      "title": "Meditation",
       "isCompleted": true,
-      "createdAt": "2025-09-17T02:10:21.921Z"
+      "createdAt": "2025-09-15T07:45:00.000Z",
+      "desc": "마음 가라앉히기 15분"
+    },
+    {
+      "id": "e5f8",
+      "title": "Call mom",
+      "isCompleted": false,
+      "createdAt": "2025-09-16T12:00:00.000Z",
+      "desc": "엄마와 주간 안부 통화"
+    },
+    {
+      "id": "f6a9",
+      "title": "Laundry",
+      "isCompleted": true,
+      "createdAt": "2025-09-14T14:30:00.000Z",
+      "desc": "세탁기 돌리고 옷 개기"
+    },
+    {
+      "id": "g7b1",
+      "title": "Clean kitchen",
+      "isCompleted": false,
+      "createdAt": "2025-09-13T17:20:00.000Z",
+      "desc": "싱크대, 가스레인지 닦기"
+    },
+    {
+      "id": "h8c2",
+      "title": "Fix bike",
+      "isCompleted": true,
+      "createdAt": "2025-09-12T09:50:00.000Z",
+      "desc": "체인 청소 및 바람 넣기"
+    },
+    {
+      "id": "i9d3",
+      "title": "Write blog post",
+      "isCompleted": false,
+      "createdAt": "2025-09-15T18:00:00.000Z",
+      "desc": "개발 관련 블로그 글 1편 작성"
+    },
+    {
+      "id": "j0e4",
+      "title": "Plan trip",
+      "isCompleted": false,
+      "createdAt": "2025-09-11T21:15:00.000Z",
+      "desc": "주말 여행 일정 정리"
+    },
+    {
+      "id": "k1f5",
+      "title": "Pay bills",
+      "isCompleted": true,
+      "createdAt": "2025-09-13T11:10:00.000Z",
+      "desc": "전기, 인터넷, 수도 요금 납부"
+    },
+    {
+      "id": "l2a6",
+      "title": "Cook dinner",
+      "isCompleted": false,
+      "createdAt": "2025-09-14T19:30:00.000Z",
+      "desc": "새로운 레시피 시도해서 저녁 준비"
+    },
+    {
+      "id": "m3b7",
+      "title": "Email client",
+      "isCompleted": true,
+      "createdAt": "2025-09-15T16:45:00.000Z",
+      "desc": "업데이트 내용 전달"
+    },
+    {
+      "id": "n4c8",
+      "title": "Gardening",
+      "isCompleted": false,
+      "createdAt": "2025-09-12T15:00:00.000Z",
+      "desc": "화분 물주기 및 잡초 제거"
+    },
+    {
+      "id": "o5d9",
+      "title": "Learn JavaScript",
+      "isCompleted": false,
+      "createdAt": "2025-09-16T09:20:00.000Z",
+      "desc": "강의 한 챕터 학습"
+    },
+    {
+      "id": "p6e0",
+      "title": "Watch tutorial",
+      "isCompleted": true,
+      "createdAt": "2025-09-13T13:40:00.000Z",
+      "desc": "React 컴포넌트 관련 영상 시청"
+    },
+    {
+      "id": "q7f1",
+      "title": "Organize desk",
+      "isCompleted": false,
+      "createdAt": "2025-09-14T08:50:00.000Z",
+      "desc": "책상 정리, 문서 분류"
+    },
+    {
+      "id": "r8a2",
+      "title": "Practice guitar",
+      "isCompleted": true,
+      "createdAt": "2025-09-15T20:10:00.000Z",
+      "desc": "코드 연습 및 곡 한 곡 마스터"
+    },
+    {
+      "id": "s9b3",
+      "title": "Check emails",
+      "isCompleted": false,
+      "createdAt": "2025-09-16T11:00:00.000Z",
+      "desc": "받은 편지함 정리 및 회신"
+    },
+    {
+      "id": "t0c4",
+      "title": "Watch news",
+      "isCompleted": true,
+      "createdAt": "2025-09-17T06:30:00.000Z",
+      "desc": "주요 이슈 10분 요약 시청"
     }
   ]
 }
