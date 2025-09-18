@@ -5,6 +5,12 @@ import React, { useEffect, useState } from "react";
 const TodolistPage = () => {
   const [todos, setTodos] = useState([]);
   const [keyword, setKeyword] = useState("");
+  const sort = [
+    { name: "할일 순", value: "task", field: "isCompleted", order: "asc" },
+    { name: "가나다(abc) 순", value: "abc", field: "title", order: "asc" },
+    { name: "등록일자 순", value: "date", field: "createdAt", order: "desc" },
+  ];
+  const [params, setParams] = useState({});
 
   const handleCheck = async ({ id, isCompleted }) => {
     // const handleCheck = async (a) => {
@@ -61,36 +67,53 @@ const TodolistPage = () => {
   //   );
   // }; // 오답노트: 원본 todos 변경으로 검색어를 지워도 원래의 전체 목록으로 돌아갈 수 없음 => 처음부터 원본 todo에서 keyword로 filtering한 목록을 map해야함
 
-  const handleSearchChange = (e) => {
+  const handleSearch = (e) => {
     setKeyword(e.target.value);
   }; // 오답노트: 값이 바뀔 때마다 원본 배열을 직접 바꾸는게 아닌, keyword를 바꾸고, 그거로 filter한 배열을 출력시켜야 함
 
+  const handleSelect = (e) => {
+    setParams({
+      _sort: sort.find((el) => el.value === e.target.value).field,
+      _order: sort.find((el) => el.value === e.target.value).order,
+    });
+    console.log(params); // 오답노트: useEffect에서 확인 가능
+  }; // 오답노트: 왜 비동기로 setter를? batchup 때문
+
+  const queryString = new URLSearchParams(params).toString();
+
   useEffect(() => {
     const getLists = async () => {
-      const res = await fetch("http://localhost:4000/todos");
+      const res = await fetch(`http://localhost:4000/todos?${queryString}`);
       const data = await res.json();
 
       setTodos(data);
     };
 
     getLists();
-  }, []);
+  }, [params]);
 
-  const filteredTodos = todos.filter((todo) =>
-    todo.title.toLowerCase().includes(keyword.toLowerCase()) // 오답노트: todo.title로 해야지!
+  const filteredTodos = todos.filter(
+    (todo) => todo.title.toLowerCase().includes(keyword?.toLowerCase()) // 오답노트: todo.title로 해야지!
   ); // 오답노트: 순전히 데이터를 필터링한 값으로 사용
 
   return (
     <div>
       <h1>[ TODO LIST ]</h1>
-      <form className="flex gap-2">
+      <div onSubmit={handleSearch} className="flex gap-2">
         <input
           placeholder="검색어를 입력하세요"
           className="p-1 border rounded-md"
-          onChange={handleSearchChange}
+          onChange={handleSearch}
         />
         <button className="text-blue-500 border p-1 rounded-md">SEARCH</button>
-      </form>
+        <select onChange={handleSelect}>
+          {sort.map((el) => (
+            <option key={el.value} value={el.value}>
+              {el.name}
+            </option>
+          ))}
+        </select>
+      </div>
       <div className="flex flex-col">
         {filteredTodos.map((t) => {
           return (
