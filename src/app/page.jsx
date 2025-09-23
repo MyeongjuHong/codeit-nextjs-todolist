@@ -1,35 +1,39 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import TodoList from "./_components/TodoList";
-
-const initialTodos = [
-  {
-    id: 1,
-    title: "할 일 1",
-    completed: false,
-  },
-  {
-    id: 2,
-    title: "할 일 2",
-    completed: true,
-  },
-  {
-    id: 3,
-    title: "할 일 3",
-    completed: false,
-  },
-];
+import { fetchTodos } from "@/api/todos";
 
 export default function Home() {
-  const [todos, setTodos] = useState(initialTodos);
+  const [todos, setTodos] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isError, setIsError] = useState(false);
 
   const loadTodos = async () => {
-    // TODO: 할 일 목록을 가져오는 로직 추가
-    // - initialTodos 제거하고 초기값 빈 배열 [] 적용
-    // - useEffect 콜백 함수 내에서 사용
-    // - fetchTodos 함수 호출
+    const data = await fetchTodos();
+    setTodos(data);
   };
+
+  useEffect(() => {
+    try {
+      setIsError(false);
+      setIsLoading(true);
+      loadTodos();
+    } catch (err) {
+      setIsError(true);
+      console.error(err); // REVIEW: 또 console.error로 찍는게 맞나?
+    } finally {
+      setIsLoading(false);
+    }
+  }, []);
+
+  if (isLoading) {
+    return <>Loading . . .</>;
+  }
+
+  if (isError) {
+    return <>Check error using console</>;
+  }
 
   return (
     <div className="container mx-auto px-4 py-8">
