@@ -3,31 +3,42 @@
 import { useEffect, useState } from "react";
 import { fetchTodo, fetchTodos } from "@/api/todos";
 import { useParams, useRouter } from "next/navigation";
+import { useQuery } from "@tanstack/react-query";
 
 export default function TodoDetailPage() {
   const { id } = useParams();
   const router = useRouter();
 
-  const [todo, setTodo] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState(null);
+  // const [todo, setTodo] = useState(null);
+  // const [isLoading, setIsLoading] = useState(true);
+  // const [error, setError] = useState(null);
 
-  useEffect(() => {
-    const fetchTodoDetail = async () => {
-      try {
-        setIsLoading(true);
-        const data = await fetchTodo(id);
-        setTodo(data);
-      } catch (err) {
-        console.error("할 일 상세 정보를 가져오는 중 오류 발생:", err);
-        setError("할 일 상세 정보를 가져오는데 실패했습니다.");
-      } finally {
-        setIsLoading(false);
-      }
-    };
+  // useEffect(() => {
+  const fetchTodoDetail = async () => {
+    try {
+      // setIsLoading(true);
+      const data = await fetchTodo(id);
+      setTodo(data);
+    } catch (err) {
+      console.error("할 일 상세 정보를 가져오는 중 오류 발생:", err);
+      // setError("할 일 상세 정보를 가져오는데 실패했습니다.");
+    } finally {
+      // setIsLoading(false);
+    }
+  };
 
-    fetchTodoDetail();
-  }, [id]);
+  // fetchTodoDetail();
+  // }, [id]);
+
+  const {
+    data: todo,
+    isPending: isLoading,
+    error,
+  } = useQuery({
+    //queryKey: ["todo", id], // 오답노트: 보통은 목록키에 상세키를 붙여 같은 캐시 그룹으로 관리하는게 정석
+    queryKey: ["todos", id],
+    queryFn: (id) => fetchTodoDetail(id),
+  });
 
   if (isLoading) {
     return (
