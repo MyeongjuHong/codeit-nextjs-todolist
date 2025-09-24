@@ -11,6 +11,7 @@ function Button({
   as: AsComponent,
   href,
   fullWidth,
+  disabled,
   ...rest
 }) {
   // 스타일 클래스 생성
@@ -70,6 +71,7 @@ function Button({
   return (
     <button
       className={buttonClasses}
+      disabled={disabled}
       style={{
         backgroundColor:
           appearance === "primary"
