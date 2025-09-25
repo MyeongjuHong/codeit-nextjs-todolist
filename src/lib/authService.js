@@ -15,4 +15,9 @@ export const authService = {
     }),
 
   // 회원가입
+  register: (name, email, password) =>
+    defaultFetch("/users", {
+      method: "POST",
+      body: JSON.stringify({ email, name, password }),
+    }),
 };
