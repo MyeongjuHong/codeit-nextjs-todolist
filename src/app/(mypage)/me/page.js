@@ -11,16 +11,18 @@ import NextLink from "@/components/Link";
 import HorizontalRule from "@/components/HorizontalRule";
 import LinkCard from "@/components/LinkCard";
 import Link from "next/link";
+import { useAuth } from "@/providers/AuthProvider";
 
 export default function MyPage() {
   const [user, setUser] = useState(null);
   const [links, setLinks] = useState([]);
   const [loading, setLoading] = useState(true);
   const router = useRouter();
+  const { getUser } = useAuth();
 
   async function getMe() {
     try {
-      const userData = await userService.getMe();
+      const userData = await getUser();
       setUser(userData);
     } catch (error) {
       console.error("사용자 정보 가져오기 실패:", error);
